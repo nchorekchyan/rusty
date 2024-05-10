@@ -1,19 +1,27 @@
-use std::io;
+//use std::io;
+use dialoguer::Select;
+
+use rusty::dummy_window;
+
 
 
 fn main() {
 
+    //build the basic window
+    dummy_window();
+
+    //game that needs to be moved into window somehow
     println!("Welcome to Zaleria");
+    println!();
 
-    println!("Choose your fate");
+    let choice = vec!["Val","Ezekeal","Chowabunga","Serenety"];
 
+    let select = Select::new()
+        .with_prompt("Choose your fate")
+        .items(&choice)
+        .interact()
+        .unwrap();
 
-    let mut choice:String = String::new();
-
-    io::stdin()
-        .read_line(&mut choice)
-        .expect("FAILURE");
-
-    println!("Ahh, I see that you chose {choice}");
-
+    println!("I see you choose {}, Pathetic", choice[select]);
+    
 }
